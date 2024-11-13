@@ -1,0 +1,212 @@
+/* Styles for the filter and search buttons */
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.dropdown-menu {
+  min-width: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu li a {
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f2f2f2;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.card1 {
+  list-style-type: none;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.card1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px 0 0 8px;
+}
+
+.card1 .row {
+  display: flex;
+  align-items: stretch;
+}
+
+.card1 .col-md-4 {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+
+.card1 .col-md-8 {
+  flex: 0 0 60%;
+  max-width: 60%;
+}
+
+.card1 .card-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card1 h5 {
+  margin-top: 0;
+  color: #333;
+}
+
+.card1 p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown .btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown .btn:hover {
+  background-color: #0056b3;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.dropdown-menu li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #007bff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#poster {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px 0 0 8px;
+}
+
+.navbar {
+  background: #030027;
+  padding: 1rem 8rem;
+  z-index: 1000;
+}
+
+.navbar .navbar-brand {
+  font-weight: 700;
+  font-family: 'Monoton', cursive;
+}
+
+.navbar .navbar-brand:hover {
+  color: #caac00;
+}
+
+ul li {
+  margin: 0px 10px;
+}
+
+#navbarSupportedContent>ul>li:nth-child(n)>a {
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0 0.8rem;
+  cursor: pointer;
+}
+
+#navbarSupportedContent>ul>li:nth-child(n)>a:hover {
+  color: #caac00;
+}
+
+#navbarSupportedContent>button:hover {
+  background: rgb(22, 138, 113);
+}
+
+@media (max-width: 768px) {
+  .navbar-expand-lg .navbar-nav {
+      flex-direction: column;
+  }
+  .navbar-nav .nav-item {
+      margin-right: 0;
+      margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container .card1 {
+      width: 100%;
+  }
+
+  .card1 .row {
+      flex-direction: column;
+  }
+
+  .card1 .col-md-4,
+  .card1 .col-md-8 {
+      max-width: 100%;
+      flex: 0 0 100%;
+  }
+
+  .card1 img {
+      border-radius: 8px 8px 0 0;
+  }
+}

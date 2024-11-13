@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Monoton&family=Montserrat:ital,wght@0,200;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <title>Event Details</title>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: #495057;
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            overflow: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .left-container {
+            flex: 1 1 300px;
+            max-width: 300px;
+            margin: 0 0px 0 30px;
+        }
+
+        .left-dates,
+        .eligibility {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .right-container {
+            flex: 2 1 600px;
+        }
+
+        .event-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .rewards-section {
+            color: white;
+            background-color: rgb(211, 175, 85);
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .event-details h2,
+        .event-details h3,
+        .event-details h4 {
+            margin-top: 0;
+        }
+
+        #register-btn,
+        #closed-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            width: 200px;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        #register-btn {
+            background-color: brown;
+        }
+
+        #closed-btn {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
+        hr {
+            color: aliceblue;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 10px auto;
+            background-color: #030027;
+            border-radius: 40px;
+            padding: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .navigation li {
+            text-decoration: none;
+            list-style: none;
+            border: 1px solid #030027;
+            margin: 10px;
+            padding: 10px 30px;
+            border-radius: 20px;
+        }
+
+        .navigation li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .describe {
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .describe-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .content-date {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .content-date .card1 {
+            border: 1px solid #030027;
+            border-radius: 15px;
+            background-color: #030027;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .content-date .card1 p {
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .rewards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .reward-card {
+            background-color: #D6D66B;
+            border-radius: 15px;
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .left-container {
+                margin: 10px auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-dates,
+            .eligibility {
+                padding: 20px;
+                margin: 10px 0;
+            }
+
+            .nav-container {
+                flex-direction: column;
+            }
+
+            .navigation li {
+                margin: 5px;
+                padding: 5px 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <%- include('navbarstu') %>
+    <img src="data:<%= event.poster.contentType %>;base64,<%= event.poster.data.toString('base64') %>" style="padding-top:10px; width: 100%; height: auto; max-height: 500px;" alt="Event Poster Banner">
+
+    <div class="container">
+        <div class="right-container">
+            <div class="event-details">
+                <h2 class="fw-bold"><%= event.eventname %></h2>
+                <p><strong>Club:</strong> <%= event.clubname %></p>
+                <p><strong><i class="fas fa-map-marker-alt"></i></strong> <%= event.location %></p>
+                <hr>
+                <div class="event-description mt-4">
+                    <% if (event.cheif && event.cheif.length > 0) { %>
+                        <h3>Guest/Speaker:</h3>
+                        <p><%- event.cheif %></p>
+                    <% } %>
+                    
+                    
+                    <h3>Description:</h3>
+                    <p><%- event.description %></p>
+                </div>
+            </div>
+        </div>
+        <div class="left-container">
+            <div class="left-dates">
+                <div class="event-info">
+                    <p><i class="far fa-calendar-alt"></i> <strong>Date:</strong> <%= new Date(event.eventdate).toLocaleDateString() %></p>
+                </div>
+                <div class="event-info">
+                    <p><i class="far fa-calendar-times"></i> <strong>Deadline:</strong> <%= new Date(event.eventdeadline).toLocaleDateString() %></p>
+                </div>
+                <p><i class="fas fa-dollar-sign"></i> <strong>Registration Fee:</strong> <%= event.eventfee %></p>
+                <p><i class="fas fa-users"></i> <strong>Team Size:</strong> <%= event.team %></p>
+                <hr>
+                <% if (new Date() > new Date(event.eventdeadline)) { %>
+                    <a href="#" class="btn btn-primary view-details" id="closed-btn">Registration Closed</a>
+                <% } else { %>
+                    <a href="/eventregister/<%= event._id %>" class="btn btn-primary view-details" id="register-btn">Register</a>
+                <% } %>
+            </div>
+            <div class="eligibility">
+                <div class="heading">
+                    <h3>Eligibility</h3>
+                </div>
+                <div>
+                    <%= event.eligibility %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-container">
+        <div class="navigation">
+            <li><a href="#imp-dates">Important Dates</a></li>
+            <li><a href="#objective">Objective</a></li>
+            <li><a href="#details">Contact Details</a></li>
+            <li><a href="#prizes">Prizes</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+        </div>
+    </div>
+    <div class="describe">
+        <div id="imp-dates" class="describe-content">
+            <div class="heading">
+                <h3>Dates & Deadline</h3>
+            </div>
+            <div class="content-date">
+                <div class="card1">
+                    <p class="date-section"><i class="far fa-calendar-check"></i> <strong>Registration Open</strong> <br>
+                        <span><%= new Date(event.eventopen).toLocaleDateString() %></span>
+                    </p>
+                </div>
+                <div class="card1">
+                    <p class="date-section"><i class="far fa-calendar-check"></i> <strong>Registration Close</strong><br>
+                        <span><%= new Date(event.eventdeadline).toLocaleDateString() %></span>
+                    </p>
+                </div>
+                <div class="card1">
+                    <p class="date-section"><i class="far fa-calendar-times"></i> <strong>Deadline</strong><br>
+                        <span><%= new Date(event.eventdate).toLocaleDateString() %></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="objective" class="describe-content">
+            <div class="heading">
+                <h3>Important Details</h3>
+            </div>
+            <div class="content">
+                <div class="event-description mt-4">
+                    <% const outcomesArray = event.outcome.split('\n');
+                    outcomesArray.forEach(outcome => { %>
+                        <p><%= outcome.trim() %></p>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+        <div id="details" class="describe-content">
+            <div class="heading">
+                <h3>Contact Info</h3>
+            </div>
+            <div class="content">
+                <%- event.contact %>
+            </div>
+        </div>
+        <div id="prizes" class="describe-content">
+            <div class="heading">
+                <h3>Prizes & Rewards</h3>
+            </div>
+            <div class="content" id="nav-reward">
+                <div class="rewards-container">
+                    <% const rewards = event.eventrewards.split(','); %>
+                    <% rewards.forEach((reward, index) => { %>
+                        <div class="reward-card">
+                            <p class="display-3"><i class="fas fa-<%= ['trophy', 'medal', 'gift', 'star'][index % 4] %>"></i></p>
+                            <p><%= reward.trim() %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <% if (event.faqs && event.faqs.length > 0) { %>
+            <div id="faqs" class="describe-content">
+                <div class="heading">
+                    <h3>Frequently Asked Questions</h3>
+                </div>
+                <div class="content">
+                    <% event.faqs.forEach(faq => { %>
+                        <div class="faq-item">
+                            <p><strong>Q:</strong> <%= faq.question %></p>
+                            <p><strong>A:</strong> <%= faq.answer %></p>
+                            <hr>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    <%- include('footer') %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script>
+        console.log('Registration link:', '<%= event.link %>');
+    </script>
+</body>
+
+</html>

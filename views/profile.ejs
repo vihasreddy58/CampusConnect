@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-q2h/z1+uSGCZxD7E6tKz77LF4hK1IvBoheA7yHEPlOnjv+xSUZ40+tD0Dsmxjx5y" crossorigin="anonymous">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* General Layout Styles */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        /* Profile Photo Styling */
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #4CAF50;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card Styling */
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+        .btn-secondary {
+            background-color: #343a40;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2c2e33;
+        }
+
+        /* Accordion Styling */
+        .accordion-button {
+            background-color: #4CAF50;
+            color: #fff;
+            font-weight: 500;
+            border-radius: 5px;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #45a049;
+            color: #fff;
+        }
+
+        .accordion-item {
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .accordion-body {
+            background-color: #f0f2f5;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        /* Responsive Design for Smaller Devices */
+        @media (max-width: 768px) {
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .profile-header {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Navbar -->
+    <%- include('navbarstu') %>
+
+    <div class="container my-5">
+        <h1 class="profile-header">Student Profile</h1>
+        
+        <div class="row">
+            <!-- Profile Photo and Details -->
+            <div class="col-md-4 text-center profile-details">
+                <% if (user.profilePhoto && user.profilePhoto.data) { %>
+                    <img 
+                        src="data:<%= user.profilePhoto.contentType %>;base64,<%= user.profilePhoto.data.toString('base64') %>" 
+                        alt="Profile Photo" 
+                        class="profile-photo mt-3">
+                <% } else { %>
+                    <img 
+                        src="/images/default-profile.png" 
+                        alt="Default Profile Photo" 
+                        class="profile-photo mt-3">
+                <% } %>
+
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile Information</h5>
+                        <p><strong>Full Name:</strong> <%= user.fullName %></p>
+                        <p><strong>Email:</strong> <%= user.email %></p>
+                        <p><strong>Username:</strong> <%= user.username %></p>
+                        <p><strong>User Type:</strong> <%= user.usertype %></p>
+                        <p><strong>Categories:</strong> <%= user.categories.join(', ') %></p>
+                        <a href="/editprofile" class="btn btn-primary w-100">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registered Events -->
+<div class="col-md-8 registered-events">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Registered Events</h5>
+            <% if (registrations && registrations.length > 0) { %>
+                <div class="accordion" id="eventsAccordion">
+                    <% registrations.forEach(function(registration, index) { %>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading<%= index %>">
+                                <button 
+                                    class="accordion-button collapsed" 
+                                    type="button" 
+                                    data-bs-toggle="collapse" 
+                                    data-bs-target="#collapse<%= index %>" 
+                                    aria-expanded="false" 
+                                    aria-controls="collapse<%= index %>">
+                                    <%= registration.event.eventname %>
+                                </button>
+                            </h2>
+                            <div 
+                                id="collapse<%= index %>" 
+                                class="accordion-collapse collapse" 
+                                aria-labelledby="heading<%= index %>" 
+                                data-bs-parent="#eventsAccordion">
+                                <div class="accordion-body">
+                                    <p><strong>Description:</strong> <%= registration.event.description %></p>
+                                    <p><strong>Location:</strong> <%= registration.event.location %></p>
+                                    <p><strong>Event Date:</strong> <%= registration.event.eventdate %></p>
+                                    <p><strong>Event Deadline:</strong> <%= registration.event.eventdeadline %></p>
+                                    <p><strong>Event Fee:</strong> <%= registration.event.eventfee %></p>
+                                    <p><strong>Registration Link:</strong> <a href="<%= registration.event.link %>" class="text-decoration-none" style="color: #4CAF50;"><%= registration.event.link %></a></p>
+                                    <a href="/events/<%= registration.event._id %>" class="btn btn-secondary mt-2">View Event Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <p class="text-muted">No events registered yet.</p>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-WE3CFSj3pAAJjbXkVRhtAzWy7TOilF9Pmd13PxbdC5AOJfuIDW13qCxT7bjIDqQZ" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

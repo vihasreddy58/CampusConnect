@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Monoton&family=Montserrat:ital,wght@0,200;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* About Us Section */
+        .contentinfo{
+            margin: 30px;
+        }
+        .contentinfo p{
+            font-weight: 400;
+            font-size: 1.45rem;
+        }
+        .container2{
+            margin: 50px;
+        }
+        .wrapper{
+            display: flex;
+            justify-content: space-between;
+            
+            margin: 50px;
+        }
+        .role{
+            border: 1px solid ;
+            border-radius: 25px;
+            padding: 30px;
+            margin: 0 40px;
+            background-color:  #030027;
+
+        }
+        .role h2{
+            text-align: center;
+            text-transform: capitalize;
+            margin-bottom: 15px;
+            color: #fff;
+           
+            
+        }
+        
+        .role ul{
+            list-style-type: none;
+        }
+        .role ul li{
+            color: white;
+            padding: 5px;
+        }
+        .container2 {
+         
+            padding: 2rem 0;
+        }
+
+
+        /* Contact Us Section */
+        .discovery {
+            background-color: #fff;
+        }
+
+        .discovery .img img {
+            border-radius: 10px;
+        }
+
+        #form-container {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Updated box shadow */
+        padding: 2rem;
+        border-radius: 10px;
+        margin: 0 auto;
+        align-items: center;
+    }
+
+        #form-container .form-group {
+            margin-bottom: 1rem;
+        }
+
+        #form-container .form-group label {
+            text-align: right;
+        }
+
+        #form-container .form-control {
+            margin-left: 1rem;
+        }
+
+        #form-container .btn {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        #form-container .btn:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/9973cec642.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <% if (user.usertype==='student' ) { %>
+        <%- include('navbarstu') %>
+            <% } else if (user.usertype==='admin' ) { %>
+                <%- include('navbarcl') %>
+                    <% } %>
+    <div class="container2">
+        <div class="heading text-center text-bold mb-4">
+            <h1>ABOUT US</h1>
+        </div>
+        <div class="contentinfo">
+            <p>Welcome to <strong>CampusConnect</strong> – your ultimate hub for discovering and engaging in college club events! At CampusConnect, we understand that promoting and managing club events can be a challenging and time-consuming task for student club committees. That’s why we’ve created a comprehensive platform designed to streamline this process, making it easier for clubs to connect with students and for students to find and participate in events that interest them.</p>
+        </div>
+        <div class="wrapper">
+            <div class="role">
+                <h2>Club Committees</h2>
+                <ul>
+                    <li><strong>Post Events Easily:</strong> With CampusConnect, club committees can effortlessly post their events along with detailed descriptions and registration information.</li>
+                    <li><strong>Reach Your Audience:</strong> Promote your events to a wide audience of students who are eager to engage and participate.</li>
+                    <li><strong>Engage and Interact:</strong> Host pre-event activities, answer FAQs, and interact with potential participants through discussion forums.</li>
+                </ul>
+            </div>
+            <div class="role">
+                <h2>Students</h2>
+                <ul>
+                    <li><strong>Discover Events:</strong> Search for events by specific clubs, topics, or interests and find opportunities that align with your passions.</li>
+                    <li><strong>Seamless Registration:</strong> Register for events directly through our platform, making it easy to get involved and stay informed.</li>
+                    <li><strong>Stay Connected:</strong> Participate in pre-event activities, join discussions, and access FAQ sections to get all the information you need.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="heading text-center" style="margin-top: 2rem;">
+        <h1 class="font-weight-bold text-dark">CONTACT US</h1>
+    </div>
+    <section class="discovery py-5">
+
+        <div class="row container" style="align-items: center;">
+            <div class="text col-lg-6 col-md-6 col-12 mx-auto">
+                <div class="container mt-4" id="form-container">
+                    <h2 class="text-center">Feel free to contact us using this form <i class="far fa-smile-beam"></i></h2>
+                    <form action="/contactus" method="post">
+                        <div class="form-group row">
+                            <label for="Fname" class="col-sm-3 col-form-label text-primary">Name*</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="Fname" id="Fname" class="form-control" placeholder="Enter your name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-3 col-form-label text-primary">Email*</label>
+                            <div class="col-sm-9">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phone" class="col-sm-3 col-form-label text-primary">Phone Number</label>
+                            <div class="col-sm-9">
+                                <input type="tel" name="phone" id="phone" class="form-control" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="subject" class="col-sm-3 col-form-label text-primary">Subject*</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Enter the subject" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="query" class="col-sm-3 col-form-label text-primary">Query*</label>
+                            <div class="col-sm-9">
+                                <textarea name="query" id="query" class="form-control" rows="5" placeholder="Enter your Query" required></textarea>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    </section>
+    <%- include('footer') %>
+</body>
+</html>

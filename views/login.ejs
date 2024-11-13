@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .container2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .grid-items {
+            text-align: center;
+            border: 1px solid #ffffff;
+            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 20px;
+            width: 450px;
+            box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-outline {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #180f0f;
+            box-sizing: border-box;
+        }
+
+        .invalid-feedback {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .mybutton {
+            color: #fdfbfb;
+            background-color: #040912;
+            padding: 12px;
+            border-radius: 4px;
+            border: none;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mybutton:hover {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .register-link,
+        .forgot-password-link {
+            color: #4285f4;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .register-link:hover,
+        .forgot-password-link:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 90px;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Monoton&family=Montserrat:ital,wght@0,200;0,400;0,500;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container2" id="login-container">
+        <div class="grid-items">
+            <img src="images/44yrs.jpg" alt="Image" style="width: 410px; height: auto; margin-bottom: 20px; border-radius: 5cm;">
+            <h1 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Login</h1>
+            <form action="/login" method="post">
+                <div class="form-outline">
+                    <label for="user" class="form-label">User</label>
+                    <select class="form-select" id="user" name="user" required>
+                        <option value="" disabled selected>Choose...</option>
+                        <option value="student">Student</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-outline">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required />
+                </div>
+                <div class="form-outline">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required />
+                </div>
+                <button type="submit" class="mybutton">Login</button>
+            </form>
+            <br>
+            <div>
+                Not a member? <a href="/register" class="register-link">Create account</a>
+            </div>
+            <div>
+                <a href="/forgotpassword" class="forgot-password-link">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
